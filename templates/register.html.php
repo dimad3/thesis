@@ -2,38 +2,29 @@
 	<img class="mb-4" src="images/apple-touch-icon.png" alt="" width="72" height="72">
 	<h1 class="h3 mb-3 font-weight-normal">Registration</h1>
 
-	<?php
-		if ($form_submited == true) { // true or false
-			if (!$validation->passed()) {
-	?>
-	<div class="alert alert-danger">
-		<p>Your account could not be created, please check the following:</p>
-		<ul>
-			<?php foreach ($validation->errors() as $error) { ?>
-							<li>
-									<?php echo $error; ?>
-							</li>
-			<?php } ?>
-		</ul>
-	</div>
-
-	<?php } else { ?>
+	<?php if ($form_submited == true):
+		if (!$validation->passed()): ?>
+			<div class="alert alert-danger">
+				<p>Your account could not be created, please check the following:</p>
+				<ul>
+					<?php foreach ($validation->errors() as $error): ?>
+						<li>
+								<?php echo $error; ?>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+		<?php else: ?>
 			<div class="alert alert-success">
-				<?php 
-					// display a flash msg
-					echo Session::flash('success'); 
-				?>
+				Register success
+			</div>
+		<?php endif; ?>
+	
+	<?php else: ?>
+		<div class="alert alert-info">
+			User's data
 		</div>
-<?php
-		}
-	} else {
-?>
-	<div class="alert alert-info">
-		User's data
-	</div>
-<?php
-	}
-?>
+	<?php endif; ?>
 
 	<div class="form-group">
 		<input type="email" class="form-control" id="email" placeholder="Email"

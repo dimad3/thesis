@@ -70,9 +70,6 @@ if ($form_submited == true) { // true or false
         
         // unset($_POST); // delete $_POST from Superglobals
         $_POST = array();
-
-        // set new element in the $_SESSION[] array
-        Session::flash('success', 'register success');
 	}
 }
 
