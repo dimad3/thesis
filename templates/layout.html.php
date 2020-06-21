@@ -22,14 +22,11 @@
 </head>
 
 <body class="text-center">
-	<main>
-      <?php // include $output; ?>
-  </main>
-
 	<?php 
 		include $output;
 		// include __DIR__ . '/../public/sandbox.php';
 		// include 'footer.html.php';
 	?>
+
 </body>
 </html>

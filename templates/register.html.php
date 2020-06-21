@@ -2,19 +2,19 @@
 	<img class="mb-4" src="images/apple-touch-icon.png" alt="" width="72" height="72">
 	<h1 class="h3 mb-3 font-weight-normal">Registration</h1>
 
-<?php
-	if ($form_submited == true) { // true or false
-		if (!$validation->passed()) {
-?>
+	<?php
+		if ($form_submited == true) { // true or false
+			if (!$validation->passed()) {
+	?>
 	<div class="alert alert-danger">
 		<p>Your account could not be created, please check the following:</p>
 		<ul>
-            <?php foreach ($validation->errors() as $error) { ?>
-                    <li>
-                        <?php echo $error; ?>
-                    </li>
-            <?php } ?>
-        </ul>
+			<?php foreach ($validation->errors() as $error) { ?>
+							<li>
+									<?php echo $error; ?>
+							</li>
+			<?php } ?>
+		</ul>
 	</div>
 
 	<?php } else { ?>

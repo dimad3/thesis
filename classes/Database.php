@@ -37,7 +37,7 @@ public static function getInstance()
 
 
 // L#4
-public function query($sql, $params = [])
+private function query($sql, $params = [])
 {
     // Set $error property to FALSE before running the query (L#4 8:00)
     $this->error = false;
@@ -139,7 +139,7 @@ public function findAll(string $table)
 
 // searches the db for records that have a value set for a specified column.
 // `$where array` contains 3 elements: 1) criteria's field name 2) operator 3) criteria's value
-public function find($table, $where = [])
+public function findByCriteria($table, $where = [])
 {
 // call the `action() method` on `Database object`
 return $this->action('SELECT *', $table, $where);
@@ -154,7 +154,7 @@ public function delete($table, $where = [])
 
 
 // Returns Object of Database class
-public function action($action, $table, $where = [])
+private function action($action, $table, $where = [])
 // `$where array` contains 3 elements: 1) criteria's field name 2) operator 3) criteria's value
 {
     /* check whether the` $where array` contains 3 elements if it does NOT return FALSE

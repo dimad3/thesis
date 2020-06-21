@@ -1,7 +1,11 @@
 <?php
 require_once 'init.php';
 
-if(Input::isSubmited()) {
+// L#8
+// Input::isSubmited() - check whether the form was submited (see forum)
+// Returns TRUE if it was and FALSE if it was NOT
+$form_submited = Input::isSubmited();
+if ($form_submited == true) { // true or false
     // check
     if(Token::check(Input::get('token'))) {
 
@@ -24,42 +28,19 @@ if(Input::isSubmited()) {
             $remember = (Input::get('remember')) === 'on' ? true : false; // returns BOOLEAN
 
             // call `login method` on `User Object`
-            $login = $user->login(Input::get('email'), Input::get('password'), $remember); // returns boolean
+            $loggedIn = $user->login(Input::get('email'), Input::get('password'), $remember); // returns boolean
 
-            if($login) {    // = if(isset($login)) {
+            if($loggedIn) {    // = if(isset($login)) {
                 Redirect::to('index.php');
-            } else {
-                echo 'login failed';
-            }
-        } else {
-            foreach ($validation->errors() as $error) {
-                echo $error . '<br>';
             }
         }
     }
 }
 
-?>
+$custom_css = 'style1.css';
 
-<form action="" method="post">
-    <div class="field">
-        <label for="email">Email</label>
-        <input type="text" name="email" value="<?php echo Input::get('email')?>">
-    </div>
+$title = 'Log in';
 
-    <div class="field">
-        <label for="">Password</label>
-        <input type="text" name="password" >
-    </div>
+$output = __DIR__ . '/../templates/login.html.php';
 
-    <div class="field">
-        <input type="checkbox" name="remember" id="remember"> <!-- if isset checkbox returns `on` -->
-        <label for="remember">Remember me</label>
-    </div>
-
-    <input type="hidden" name="token" value="<?php echo Token::generate();?>">
-    <div class="field">
-        <button type="submit">Submit</button>
-    </div>
-</form>
-
+include __DIR__ . '/../templates/layout.html.php';

@@ -67,7 +67,7 @@ public function check($source, $fields_to_check = [])
 
                     case 'unique':
                         // set `$check variable` by calling `get method` on `Datbase object`
-                        $recordset = $this->db->get($rule_value, [$field_name, '=', $field_value]);
+                        $recordset = $this->db->findByCriteria($rule_value, [$field_name, '=', $field_value]);
                         // $check = `Database object` which represents the recordset returned by `get method`
                         
                         // check whether the `$count property` of `Database object` is grater then 0

@@ -3,7 +3,7 @@
 class User 
 {
     
-private $db, $data /*stdClass Object*/, $userKey /*string*/, $isLoggedIn /*bool*/, $hashKey /*string*/;
+private $db, $data /*stdClass Object*/, $userKey /*string*/, $hashKey /*string*/, $isLoggedIn /*bool*/;
 
 public function __construct($user = null) 
 {
@@ -25,7 +25,7 @@ public function __construct($user = null)
             // set `$userId variable` by assigning `userId VALUE` from $_SEESION - returns string 
             $userId = Session::get($this->userKey); 
             
-            // checks whether `find method` on `User object` returns true
+            // checks whether `find method` on `User object`
             if($this->find($userId)) {
             // set `$data property` of the `User Object` as stdClass Object and returns BOOLEAN
             
@@ -99,7 +99,7 @@ public function login($email = null, string $password = null, bool $remember = f
                     $hashVal = hash('sha256', uniqid());
 
                     // find `user's hash` in the 'user_sessions' table by user id
-                    $db_cookie = $this->db->get('user_sessions', ['user_id', '=', $this->data()->id]);
+                    $db_cookie = $this->db->findByCriteria('user_sessions', ['user_id', '=', $this->data()->id]);
                     //  Returns Database Object - record from the 'user_sessions' table
 
                     // checks whether user has records in the 'user_sessions' table (count > 0)
@@ -132,11 +132,11 @@ public function find($value = null)
 {
     if(is_numeric($value)) {
         // find user by id
-        $this->data = $this->db->get('users', ['id', '=', $value])->first();
+        $this->data = $this->db->findByCriteria('users', ['id', '=', $value])->first();
         // Returns stdClass Object
     } else {
         // find user by email
-        $this->data = $this->db->get('users', ['email', '=', $value])->first();
+        $this->data = $this->db->findByCriteria('users', ['email', '=', $value])->first();
         // Returns stdClass Object
     }
 
@@ -203,7 +203,7 @@ public function update($fields = [], $id = null) {
 public function hasPermissions($key = null) {
 
     if($key) {  // if(isset($key))
-        $group = $this->db->get('groups', ['id', '=', $this->data()->group_id]);
+        $group = $this->db->findByCriteria('groups', ['id', '=', $this->data()->group_id]);
         // Returns Database Object
 
         if($group->count()) {   // $group->count() >0
