@@ -2,14 +2,18 @@
 
 class Database {
 
-// L#3
-private static $instance = null; // by default $instance is null
-private $pdo, $query, $error = false, $results /*array*/, $count /*integer*/;
+private $pdo /*PDO class*/, $query /*PDOStatement*/, $error = false, $results /*array*/, $count /*integer*/;
 
+// L#3 - General singleton class - https://phpenthusiast.com/blog/the-singleton-design-pattern-in-php
+// https://stackoverflow.com/questions/12553142/when-we-should-make-the-constructor-private-why-php/12553289
+// Hold the class instance (by default $instance is null)
+private static $instance = null;
+
+// The constructor is private to prevent initiation with outer code.
 private function __construct()
 {
+    // The expensive process (e.g.,db connection) goes here.
     try {
-        // $this->pdo = new PDO('mysql:host=localhost; dbname=test; charset=utf8', 'root', '');
         $this->pdo = new PDO(
             "mysql:host=" . Config::get('mysql.host') . "; dbname=" . Config::get('mysql.database'),
             Config::get('mysql.username'),
@@ -21,15 +25,13 @@ private function __construct()
     }
 }
 
-
+// The object is created from within the class itself only if the class has no instance.
 public static function getInstance()
 {
     // if $instance do not exist, create it
     if(!isset(self::$instance)) {
         self::$instance = new Database;
     }
-    //  echo 'getInstance - ';
-    //  var_dump(self::$instance);
     return self::$instance;
 }
 
@@ -53,9 +55,6 @@ public function query($sql, $params = [])
     `PDO::prepare()` returns a `PDOStatement object`.
     If the database server cannot successfully prepare the statement,
     `PDO::prepare()` returns FALSE or emits `PDOException` (depending on error handling). */
-
-    // $this->query->execute();
-    // return $this->query->fetchAll(PDO::FETCH_OBJ);
 
     // L#5 
     if(count($params)) { // if `$params` array not empty bind a value to a parameter
@@ -95,8 +94,6 @@ public function query($sql, $params = [])
     for portable applications */
     $this->count = $this->query->rowCount();
     }
-    // echo 'query - ';
-    // var_dump($this);
     return $this;
 }
 
@@ -126,11 +123,26 @@ public function count()
 }
 
 
-// call the `action() method` on `Database object`
-public function get($table, $where = [])
-// `$where array` contains 3 elements: 1) criteria's field name 2) operator 3) criteria's value
+
+// Select all records from a db's table (20.06.2020)
+// Returns Database Object containing all of the result set rows
+public function findAll(string $table)
 {
-    return $this->action('SELECT *', $table, $where);
+    $sql = "SELECT * FROM `{$table}`";
+    
+    // call the `query method` on `Database object`
+    $this->query($sql);
+
+    return $this;
+}
+
+
+// searches the db for records that have a value set for a specified column.
+// `$where array` contains 3 elements: 1) criteria's field name 2) operator 3) criteria's value
+public function find($table, $where = [])
+{
+// call the `action() method` on `Database object`
+return $this->action('SELECT *', $table, $where);
 }
 
 

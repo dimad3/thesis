@@ -17,7 +17,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
 	<!-- Custom styles for this template -->
-	<link rel="stylesheet" href="<?= $custom_css ?>">
+	<link rel="stylesheet" href="<?= ($custom_css) ?? ''; ?>">
 	<title><?= $title ?></title>
 </head>
 

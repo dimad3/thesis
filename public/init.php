@@ -61,7 +61,7 @@ if(Cookie::exists($hashKey) && !Session::exists($userKey)) {
     $browser_cookie = Cookie::get($hashKey); // returns string
     
     // find `user's hash` in the 'user_sessions' table where $browser_hash is criteria
-    $db_cookie = Database::getInstance()->get('user_sessions', ['hash', '=', $browser_cookie]);
+    $db_cookie = Database::getInstance()->find('user_sessions', ['hash', '=', $browser_cookie]);
     // Returns Database Object - record from the 'user_sessions' table
 
     // checks whether `$browser_cookie value` exists in the 'user_sessions' table (count > 0)

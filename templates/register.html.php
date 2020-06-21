@@ -1,6 +1,6 @@
 <form class="form-signin" action='' method='post'>
 	<img class="mb-4" src="images/apple-touch-icon.png" alt="" width="72" height="72">
-	<h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
+	<h1 class="h3 mb-3 font-weight-normal">Registration</h1>
 
 <?php
 	if ($form_submited == true) { // true or false
@@ -26,12 +26,14 @@
 		</div>
 <?php
 		}
+	} else {
+?>
+	<div class="alert alert-info">
+		User's data
+	</div>
+<?php
 	}
 ?>
-
-	<div class="alert alert-info">
-		Информация
-	</div>
 
 	<div class="form-group">
 		<input type="email" class="form-control" id="email" placeholder="Email"
