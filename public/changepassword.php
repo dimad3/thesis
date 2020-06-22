@@ -57,7 +57,8 @@ if ($form_submited == true) { // true or false
             
             // update hash in db's table
             $user->update(['password' => $new_hash]);
-                Session::flash('success', 'Password has been updated.');
+            
+            Session::flash('success', 'Password has been updated.');
             } else {
                 echo 'Invalid current password';
             }

@@ -16,7 +16,7 @@
             </ul>
           </div>
         <?php else: ?>
-          <div class="alert alert-success">Пароль обновлен</div>
+          <div class="alert alert-success"><?= Session::flash('success'); ?></div>
         <?php endif; ?>
       <?php endif; ?>
       

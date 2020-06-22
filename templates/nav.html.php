@@ -3,23 +3,25 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  
+  <?php $user = new User; ?>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" href="index.php">Главная</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Управление пользователями</a>
-      </li>
+      
+      <?php if ($user->isLoggedIn()): ?>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Управление пользователями</a>
+        </li>
+      <?php endif; ?>
     </ul>
 
     <ul class="navbar-nav">
       <!-- display the correct link, depending on whether or not the user is logged in -->
-      <?php 
-      $user = new User;
-      // checks whether `$isLoggedIn property` of `User object` is true
-      if ($user->isLoggedIn()): ?>
+      <?php if ($user->isLoggedIn()): ?>
         <li class="nav-item">
           <a href="edit.php" class="nav-link"><?= $user->data()->username ?> профиль</a>
         </li>

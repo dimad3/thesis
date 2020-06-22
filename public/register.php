@@ -79,6 +79,8 @@ $custom_css = 'style1.css';  // ok
 // $css = __DIR__ . '/../css/style.css';  // BUG ???
 $title = 'Register';
 
+// include __DIR__ . '/../templates/nav.html.php';
+
 $output = __DIR__ . '/../templates/register.html.php';
 
 include __DIR__ . '/../templates/layout.html.php';
