@@ -119,7 +119,12 @@ public function results()
 // we can't access PRIVATE property `$count` from external page to access it use PUBLIC `count method`
 public function count()
 {
-    return $this->count;
+    if(!$this->error()) {
+        // if the `$error property` of Database object is `FALSE`
+        return $this->count;
+    }
+    // if the `$error property` of Database object is `TRUE`
+    return false;
 }
 
 

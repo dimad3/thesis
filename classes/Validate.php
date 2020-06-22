@@ -13,13 +13,13 @@ public function __construct() {
 
 
 /* L#8 9:00
-1) $source - array with elements from `$POST array`
+1) $form_inputs - array with elements from `$POST array`
 2) $fields_to_check - multidimentional array with elements that represents form's fields' names 
 (each field as array's element's KEY) to be checked and rules (as array of VALUES) for each form's field.
 `$fields_to_check array` is MANNUALLY set as 2nd parameter when `check method` is called
 Returns `Validate object`
 */
-public function check($source, $fields_to_check = [])
+public function check(array $form_inputs, array $fields_to_check = [])
 {
     //  $field_name (new variable) - field's name (as key)
     //  $field_rules (new variable) - array of rules (as value)
@@ -30,7 +30,7 @@ public function check($source, $fields_to_check = [])
         foreach($field_rules as $rule => $rule_value) {
 
             // set the value of the current field to the `$field_value variable`
-            $field_value = $source[$field_name];
+            $field_value = $form_inputs[$field_name];
 
             // check the rules of current field
             if($rule == 'required' && empty($field_value)) {
@@ -60,15 +60,15 @@ public function check($source, $fields_to_check = [])
                     break;
 
                     case 'matches':
-                        if($field_value != $source[$rule_value]) {
+                        if($field_value != $form_inputs[$rule_value]) {
                             $this->addError("{$rule_value} must match {$field_name}");
                         }
                     break;
 
                     case 'unique':
-                        // set `$check variable` by calling `get method` on `Datbase object`
+                        // set `$recordset variable` by calling `findByCriteria method` on `Datbase object`
                         $recordset = $this->db->findByCriteria($rule_value, [$field_name, '=', $field_value]);
-                        // $check = `Database object` which represents the recordset returned by `get method`
+                        // Returns `Database object` which represents the recordset returned by `findByCriteria method`
                         
                         // check whether the `$count property` of `Database object` is grater then 0
                         if($recordset->count()) {   // the same as $recordset->count()>0 (see forum)
@@ -82,6 +82,27 @@ public function check($source, $fields_to_check = [])
                         // Returns the filtered data on success, FALSE on failure
                         if(!filter_var($field_value, FILTER_VALIDATE_EMAIL)) {
                             $this->addError("{$field_name} is not an email");
+                        }
+                    break;
+
+                    case 'wrong_pass':
+                        $user_id = Session::get('userId');
+                        // set `$recordset variable` by calling `findByCriteria method` on `Datbase object`
+                        $recordset = $this->db->findByCriteria($rule_value, ['id', '=', $user_id])->first();
+                        // Returns array which represents an user's record
+                        
+                        // set `$user_hash variable` assigning the user's password value from table `users` 
+                        $user_hash = $recordset->password;    // returns string - user's hash from db
+
+                        // set `$password variable` assigning form's field's value 
+                        $password = Input::get('current_password');
+
+                        // compare db's hash with form's field's value
+                        if(!password_verify($password, $user_hash)) {
+                        // Returns TRUE if the `$password` and `$user_hash` match, or FALSE otherwise
+                            
+                            // if passwords do NOT match
+                            $this->addError("{$field_name} is wrong.");
                         }
                     break;
                 }

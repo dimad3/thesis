@@ -30,7 +30,7 @@ if ($form_submited == true) { // true or false
 				'email' =>  [                   // 'email'field name
 					'required'  =>  true,
 					'email'     =>  true,       // 'email' rule name
-					'unique'    =>  'users'     // the name of the table
+					'unique'    =>  'users'     // the name of the table where to check the email
 				],
 
 				'password' => [                 // field name

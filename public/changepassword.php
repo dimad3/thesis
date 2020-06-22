@@ -13,8 +13,8 @@ if ($form_submited == true) { // true or false
     $validation = new Validate();
     $validation = $validation->check($_POST, [
         'current_password'      =>  [
-            'required'  =>  true, 
-            'min'       =>  3
+            'required'  =>  true,
+            'wrong_pass'=>  'users'     // the name of the table where to check the password
         ],
 
         'new_password'          =>  [
@@ -34,34 +34,20 @@ if ($form_submited == true) { // true or false
     
         // check whether `$passed property` of `Validate object` is TRUE
         if($validation->passed()) {
-
-            // set `$user_hash variable` assigning the user's password value from table `users` 
-            $user_hash = $user->data()->password;    // returns hash string
-
-            // set `$password` assigning form's field's value 
-            $password = Input::get('current_password');
-            
-            // $password - 1-st parameter - form's field `current_password` value
-            if(password_verify($password, $user_hash)) {
-            // Returns TRUE if the `$password` and `$user_hash` match, or FALSE otherwise
-            
-            /*
-            password    Required. The user's password (string)
-            algo        Required. A password algorithm constant denoting the algorithm 
-                        to use when hashing the password.
-            options     Optional. An associative array containing options.
-                        See the password algorithm constants for documentation on 
-                        the supported options for each algorithm. 
-            Returns the hashed password (as string), or FALSE on failure */
-            $new_hash = password_hash(Input::get('new_password'), PASSWORD_DEFAULT);
-            
-            // update hash in db's table
-            $user->update(['password' => $new_hash]);
-            
-            Session::flash('success', 'Password has been updated.');
-            } else {
-                echo 'Invalid current password';
-            }
+                /*
+                password    Required. The user's password (string)
+                algo        Required. A password algorithm constant denoting the algorithm 
+                            to use when hashing the password.
+                options     Optional. An associative array containing options.
+                            See the password algorithm constants for documentation on 
+                            the supported options for each algorithm. 
+                Returns the hashed password (as string), or FALSE on failure */
+                $new_hash = password_hash(Input::get('new_password'), PASSWORD_DEFAULT);
+                
+                // update hash in db's table
+                $user->update(['password' => $new_hash]);
+                
+                Session::flash('success', 'Password has been updated.');
         }
     }
 }
