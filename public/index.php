@@ -1,7 +1,7 @@
 <?php
 	require_once 'init.php';
 
-	$records = Database::getInstance()->findAll('users'); // returns array
+	$records = Database::getInstance()->findAll('users')->results(); // returns array
 
 	$title = 'Home';
 	

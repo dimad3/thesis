@@ -12,13 +12,13 @@
 
         <tbody>
           <tr>
-              <td><?= $record['id']; ?></td>
-              <td><?= htmlspecialchars($record['username'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <td><?= $record->id; ?></td>
+              <td><?= htmlspecialchars($record->username, ENT_QUOTES, 'UTF-8'); ?></td>
               <td><?php 
-                $date = new DateTime($record['registerdate']);
+                $date = new DateTime($record->registerdate);
                 echo $date->format('d/m/Y');
               ?></td>
-              <td><?= htmlspecialchars($record['note'], ENT_QUOTES, 'UTF-8'); ?></td>
+              <td><?= htmlspecialchars($record->note, ENT_QUOTES, 'UTF-8'); ?></td>
           </tr>
         </tbody>
       </table>

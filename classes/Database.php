@@ -125,7 +125,7 @@ public function count()
 
 
 // Select all records from a db's table (20.06.2020)
-// Returns array containing all of the result set rows
+// Returns Database Object containing all of the result set rows
 public function findAll(string $table)
 {
     $sql = "SELECT * FROM `{$table}`";
@@ -133,12 +133,13 @@ public function findAll(string $table)
     // call the `query method` on `Database object`
     $this->query($sql);
 
-    return $this->results();
+    return $this;
 }
 
 
 // searches the db for records that have a value set for a specified column.
 // `$where array` contains 3 elements: 1) criteria's field name 2) operator 3) criteria's value
+// Returns a `Database object` or FALSE if the `Database object` has an error
 public function findByCriteria(string $table, array $where = [])
 {
 // call the `action() method` on `Database object`
@@ -146,6 +147,7 @@ return $this->action('SELECT *', $table, $where);
 }
 
 
+// Returns a `Database object` or FALSE if the `Database object` has an error
 public function delete(string $table, array $where = [])
 // `$where array` contains 3 elements: 1) criteria's field name 2) operator 3) criteria's value
 {
@@ -188,12 +190,13 @@ private function action(string $action, string $table, array $where = [])
             // set `$sql` string
             $sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
             
-            // call the `query method` on `Database object`
-            $this->query($sql, [$value]);
-            
-            return $this;
+            if(!$this->query($sql, [$value])->error()) { //true если есть ошибка
+                return $this;
+            }
         }
     }
+    
+    return false;
 }
 
 
