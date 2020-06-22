@@ -3,8 +3,10 @@ require_once 'init.php';
 
 $user = new User;
 
-// check whether the form was submited - returns TRUE if it was and FALSE if it was NOT
-if(Input::isSubmited()) {
+// Input::isSubmited() - check whether the form was submited (see forum)
+// Returns TRUE if it was and FALSE if it was NOT
+$form_submited = Input::isSubmited();
+if ($form_submited == true) { // true or false
 // if form was submited, then:
         
     // check whether new values correspond with validation's rules
@@ -55,44 +57,18 @@ if(Input::isSubmited()) {
             
             // update hash in db's table
             $user->update(['password' => $new_hash]);
-                
                 Session::flash('success', 'Password has been updated.');
-                Redirect::to('index.php');
             } else {
                 echo 'Invalid current password';
-            }
-
-        } else {
-            foreach($validation->errors() as $error) {
-                // $validation->errors() - ARRAY - `$errors property` of `Validate object`
-                // $error - VALUE of each error
-                echo $error . '<br>';
             }
         }
     }
 }
-?>
 
-<form action="" method="post">
+$title = 'Change password';
 
-    <div class="field">
-        <label>Current password</label>
-        <input type="text" name="current_password">
-    </div>
+include __DIR__ . '/../templates/nav.html.php';
 
-    <div class="field">
-        <label>New password</label>
-        <input type="text" name="new_password">
-    </div>
+$output = __DIR__ . '/../templates/changepassword.html.php';
 
-    <div class="field">
-        <label>New password again</label>
-        <input type="text" name="new_password_again">
-    </div>
-
-    <div class="field">
-        <button type="submit">Submit</button>
-    </div>
-
-    <input type="hidden" name="token" value="<?php echo Token::generate();?>">
-</form>
+include __DIR__ . '/../templates/layout.html.php';

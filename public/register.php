@@ -40,6 +40,7 @@ if ($form_submited == true) { // true or false
 
 				'password_again' => [           // field name
 					'required'  => true,
+					'min'       => 3,
 					'matches'   => 'password'   // the name of the field to compare with
 				]
 			]

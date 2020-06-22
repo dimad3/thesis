@@ -34,7 +34,7 @@
         </div>
 
         <div class="form-group">
-          <a href="changepassword.html">Изменить пароль</a>
+          <a href="changepassword.php">Изменить пароль</a>
         </div>
 
         <div class="form-group">
