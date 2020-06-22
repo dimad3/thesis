@@ -9,6 +9,9 @@
       <li class="nav-item">
         <a class="nav-link" href="index.php">Главная</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Управление пользователями</a>
+      </li>
     </ul>
 
     <ul class="navbar-nav">
@@ -18,7 +21,7 @@
       // checks whether `$isLoggedIn property` of `User object` is true
       if ($user->isLoggedIn()): ?>
         <li class="nav-item">
-          <a href="profile.php" class="nav-link">Профиль</a>
+          <a href="edit.php" class="nav-link"><?= $user->data()->username ?> профиль</a>
         </li>
         <li class="nav-item">
           <a href="logout.php" class="nav-link">Выйти</a>

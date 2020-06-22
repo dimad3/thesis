@@ -20,17 +20,8 @@
               ?></td>
               <td><?= htmlspecialchars($record['note'], ENT_QUOTES, 'UTF-8'); ?></td>
           </tr>
-        
-          <tr>
-            <td>2</td>
-            <td>Джон</td>
-            <td>25/02/2025</td>
-            <td>Привет! Я новый пользователь вашего проекта, хочу перейти на уровень 3!</td>
-          </tr>
         </tbody>
       </table>
-
-
     </div>
   </div>
 </div>

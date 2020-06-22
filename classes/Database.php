@@ -125,7 +125,7 @@ public function count()
 
 
 // Select all records from a db's table (20.06.2020)
-// Returns Database Object containing all of the result set rows
+// Returns array containing all of the result set rows
 public function findAll(string $table)
 {
     $sql = "SELECT * FROM `{$table}`";
@@ -133,7 +133,7 @@ public function findAll(string $table)
     // call the `query method` on `Database object`
     $this->query($sql);
 
-    return $this;
+    return $this->results();
 }
 
 
