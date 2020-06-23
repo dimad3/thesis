@@ -203,7 +203,7 @@ public function update($fields = [], $id = null) {
 public function hasPermissions($key = null) {
 
     if($key) {  // if(isset($key))
-        $group = $this->db->findByCriteria('groups', ['id', '=', $this->data()->group_id]);
+        $group = $this->db->findByCriteria('groups', ['id', '=', $this->data()->groupid]);
         // Returns Database Object
 
         if($group->count()) {   // $group->count() >0
