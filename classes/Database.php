@@ -124,7 +124,7 @@ public function count()
         return $this->count;
     }
     // if the `$error property` of Database object is `TRUE`
-    return false;
+    return 0;
 }
 
 

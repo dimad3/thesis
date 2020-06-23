@@ -38,6 +38,6 @@ $title = 'My profile';
 
 include __DIR__ . '/../templates/nav.html.php';
 
-$output = __DIR__ . '/../templates/edit.html.php';
+$output = __DIR__ . '/../templates/editprofile.html.php';
 
 include __DIR__ . '/../templates/layout.html.php';

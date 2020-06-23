@@ -29,7 +29,7 @@
         <?php foreach ($records as $record): ?>
           <tr>
               <td><?= $record->id; ?></td>
-              <td><a href="user_profile.php?id=<?= $record->id ?>"><?= htmlspecialchars($record->username, ENT_QUOTES, 'UTF-8'); ?></a></td>
+              <td><a href="userprofile.php?id=<?= $record->id ?>"><?= htmlspecialchars($record->username, ENT_QUOTES, 'UTF-8'); ?></a></td>
               <td><?= htmlspecialchars($record->email, ENT_QUOTES, 'UTF-8'); ?></td>
               <td><?php 
                 $date = new DateTime($record->registerdate);
