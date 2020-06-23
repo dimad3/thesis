@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="col-md-8">
-      <h1>Профиль пользователя <?= $user->data()->username;?></h1>
+    
+    <h1>Профиль пользователя <?= $user->data()->username;?></h1>
       
       <?php if ($form_submited == true):
         if (!$validation->passed()): ?>
@@ -32,10 +33,12 @@
           <input type="text" class="form-control" name="status" 
           value="<?= $user->data()->note;?>" id="status" >
         </div>
-
-        <div class="form-group">
-          <a href="changepassword.php">Изменить пароль</a>
-        </div>
+        
+        <?php if (!isset($user1)): ?>     
+          <div class="form-group">
+            <a href="changepassword.php">Изменить пароль</a>
+          </div>
+        <?php endif; ?>
 
         <div class="form-group">
           <input type="hidden" class="form-control" name="token" value="<?= Token::generate();?>">

@@ -25,11 +25,21 @@ if ($user->isLoggedIn()) {
             // check whether `$passed property` of `Validate object` is TRUE
             if($validation->passed()) {
 
-                // update data in db's table
-                $user->update([
-                    'username' => Input::get('username'),
-                    'note'     => Input::get('status')
-                ]);
+                if ($user->hasPermissions('admin') && !empty($_GET)) {
+                    // update data in db's table for user profile (2nd argument is provided)
+                    $user->update(
+                        ['username' => Input::get('username'),
+                        'note'     => Input::get('status')
+                        ],
+                        $_GET['id']
+                    );
+                } else {
+                    // update data in db's table for admin profile (2nd argument is NOT provided)
+                    $user->update([
+                        'username' => Input::get('username'),
+                        'note'     => Input::get('status')
+                    ]);
+                }
             }
         }
     }
@@ -39,6 +49,12 @@ if ($user->isLoggedIn()) {
     $title = 'Edit profile';
 
     include __DIR__ . '/../templates/nav.html.php';
+
+    // prepare user objects to be used in 'editprofile.html.php'
+    if ($user->hasPermissions('admin') && !empty($_GET)) {
+        $user1 = $user;                 // $user1 is admin
+        $user = new User($_GET['id']);  // $user2 is user to be edited
+    }
 
     $output = __DIR__ . '/../templates/editprofile.html.php';
 
