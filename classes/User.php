@@ -200,8 +200,8 @@ public function update($fields = [], $id = null) {
 
 // L#20 - Parameters: $key Required - string - the key of element in an assotiative array
 // Returns BOOLEAN
-public function hasPermissions(string $key = null) {
-
+public function hasPermissions(string $key = null)
+{
     if($key) {  // if(isset($key))
         $group = $this->db->findByCriteria('groups', ['id', '=', $this->data()->groupid]);
         // Returns Database Object
@@ -224,8 +224,10 @@ public function hasPermissions(string $key = null) {
             */
             $permissions = json_decode($permissions, true); // if 2-nd parameter is true -> returns array
 
-            if($permissions[$key]) {
-                return true;
+            if (isset($permissions[$key])) {
+                if($permissions[$key] == true) {
+                    return true;
+                }
             }
         }
     }

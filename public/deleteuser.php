@@ -1,12 +1,11 @@
 <?php
 require_once 'init.php';
 $user = new User;
-if ($user->isLoggedIn() && $user->hasPermissions('admin')) {    // $db = new Database->getInstance();
+if ($user->isLoggedIn() && $user->hasPermissions('moderator')) {
     
-    //$db->delete('users', $GET['id']);
     Database::getInstance()->delete('users', ['id', '=', $_GET['id']]);
 
-    Redirect::to('index.php');
+    Redirect::to('manageusers.php');
 } else {
     Redirect::to(404);
 }

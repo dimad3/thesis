@@ -40,7 +40,7 @@
   </div>
   
   <div class="form-group">
-    <input type="text" class="form-control" name="token" value="<?php echo Token::generate();?>">
+    <input type="hidden" class="form-control" name="token" value="<?php echo Token::generate();?>">
   </div>
 
   <button class="btn btn-lg btn-primary btn-block" type="submit">Войти</button>

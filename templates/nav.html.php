@@ -7,7 +7,7 @@
         <a class="nav-link" href="index.php">Главная</a>
       </li>
       
-      <?php if ($user->isLoggedIn() && $user->hasPermissions('admin')): ?>
+      <?php if ($user->isLoggedIn() && $user->hasPermissions('moderator')): ?>
         <li class="nav-item">
           <a class="nav-link" href="manageusers.php">Управление пользователями</a>
         </li>

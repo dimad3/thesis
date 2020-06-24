@@ -25,7 +25,7 @@ if ($user->isLoggedIn()) {
             // check whether `$passed property` of `Validate object` is TRUE
             if($validation->passed()) {
 
-                if ($user->hasPermissions('admin') && !empty($_GET)) {
+                if ($user->hasPermissions('moderator') && !empty($_GET)) {
                     // update data in db's table for user profile (2nd argument is provided)
                     $user->update(
                         ['username' => Input::get('username'),
@@ -51,7 +51,7 @@ if ($user->isLoggedIn()) {
     include __DIR__ . '/../templates/nav.html.php';
 
     // prepare user objects to be used in 'editprofile.html.php'
-    if ($user->hasPermissions('admin') && !empty($_GET)) {
+    if ($user->hasPermissions('moderator') && !empty($_GET)) {
         $user1 = $user;                 // $user1 is admin
         $user = new User($_GET['id']);  // $user2 is user to be edited
     }

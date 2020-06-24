@@ -3,7 +3,7 @@
     
     $user = new User; // WITHOUT parameter (see constructor)!
     
-    if ($user->isLoggedIn() && $user->hasPermissions('admin')) {
+    if ($user->isLoggedIn() && $user->hasPermissions('moderator')) {
 
         $records = Database::getInstance()->findAll('users')->results(); // returns array
 

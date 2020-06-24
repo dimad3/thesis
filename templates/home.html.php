@@ -4,9 +4,12 @@
       <div class="jumbotron">
         <h1 class="display-4">Привет, мир!</h1>
         <p class="lead">Это дипломный проект по разработке на PHP. На этой странице список наших пользователей.</p>
-        <hr class="my-4">
-        <p>Чтобы стать частью нашего проекта вы можете пройти регистрацию.</p>
-        <a class="btn btn-primary btn-lg" href="register.php" role="button">Зарегистрироваться</a>
+        
+        <?php if (!$user->isLoggedIn()): ?>
+          <hr class="my-4">
+          <p>Чтобы стать частью нашего проекта вы можете пройти регистрацию.</p>
+          <a class="btn btn-primary btn-lg" href="register.php" role="button">Зарегистрироваться</a>
+        <?php endif; ?>
       </div>
     </div>
   </div>
