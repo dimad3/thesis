@@ -20,7 +20,8 @@
             <td>
               <a href="userprofile.php?id=<?= $record->id ?>" class="btn btn-info">Посмотреть</a>
               <a href="editprofile.php?id=<?= $record->id ?>" class="btn btn-warning">Редактировать</a>
-              <a href="#" class="btn btn-danger" onclick="return confirm('Вы уверены?');">Удалить</a>
+              <a href="deleteuser.php?id=<?= $record->id ?>" class="btn btn-danger" onclick="return confirm('Вы уверены?');">Удалить</a>
+
               
               <?php if ($record->groupid != 2): ?>
                 <a href="#" class="btn btn-success">Назначить администратором</a>
