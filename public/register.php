@@ -68,8 +68,8 @@ if ($form_submited == true) { // true or false
             Returns the hashed password (as string), or FALSE on failure */
             'password' => password_hash(Input::get('password'), PASSWORD_DEFAULT)
         ]);
-        
-        // unset($_POST); // delete $_POST from Superglobals
+		
+		// unset($_POST); // delete $_POST from Superglobals
         $_POST = array();
 	}
 }

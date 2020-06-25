@@ -17,7 +17,7 @@
             </ul>
           </div>
         <?php else: ?>
-          <div class="alert alert-success">Профиль обновлен</div>
+          <div class="alert alert-success"><?php echo Session::flash('success'); ?></div>
         <?php endif; ?>
       <?php endif; ?>
       

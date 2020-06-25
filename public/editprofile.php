@@ -36,10 +36,11 @@ if ($user->isLoggedIn()) {
                 } else {
                     // update data in db's table for admin profile (2nd argument is NOT provided)
                     $user->update([
-                        'username' => Input::get('username'),
-                        'note'     => Input::get('status')
+                        'username'  => Input::get('username'),
+                        'note'      => Input::get('status')
                     ]);
                 }
+                Session::flash('success', 'Профиль обновлен');
             }
         }
     }

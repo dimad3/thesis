@@ -15,12 +15,13 @@ private function __construct()
     // The expensive process (e.g.,db connection) goes here.
     try {
         $this->pdo = new PDO(
-            "mysql:host=" . Config::get('mysql.host') . "; dbname=" . Config::get('mysql.database'),
+            "mysql:host=" . Config::get('mysql.host') . "; dbname=" . Config::get('mysql.database') . "; charset=utf8",
             Config::get('mysql.username'),
             Config::get('mysql.password')
         );
-        // echo 'ok';
-    } catch (PDOException $exception) {
+        // you should use UTF-8 encoded text `charset=utf8` in your websites to maximize the range of characters
+        // users have at their disposal when filling in forms on your site
+} catch (PDOException $exception) {
         die($exception->getMessage());
     }
 }
