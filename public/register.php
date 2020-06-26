@@ -1,5 +1,5 @@
 <?php
-require_once 'init.php';
+require_once __DIR__ . '/../includes/init.php';
 
 $user = new User;
 
@@ -95,7 +95,7 @@ $title = 'User Register';
 
 $output = __DIR__ . '/../templates/register.html.php';
 
-include __DIR__ . '/../templates/layout.html.php';
+include_once __DIR__ . '/../templates/layout.html.php';
 } else {
     Redirect::to(404);
 }

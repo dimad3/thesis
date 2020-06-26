@@ -32,7 +32,7 @@ public static function to($location = null)
                     
                     // if you want to display some 404 notice for user you can do this 
                     // by loading your 404.html file
-                    include __DIR__ . '/../includes/errors/404.php';
+                    include_once __DIR__ . '/../includes/errors/404.php';
                     
                     /* exit function is there because you have to prevent execution of 
                     another php code, which may be directly after it or which 

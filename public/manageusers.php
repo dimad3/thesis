@@ -1,5 +1,5 @@
 <?php
-require_once 'init.php';
+require_once __DIR__ . '/../includes/init.php';
 
 $user = new User; // WITHOUT parameter (see constructor)!
 
@@ -24,11 +24,11 @@ if ($user->isLoggedIn() && $user->hasPermissions('moderator')) {
 
     $title = 'Users\' managment';
     
-    include __DIR__ . '/../templates/nav.html.php';
+    include_once __DIR__ . '/../templates/nav.html.php';
     
     $output = __DIR__ . '/../templates/manageusers.html.php';
 
-    include __DIR__ . '/../templates/layout.html.php';
+    include_once __DIR__ . '/../templates/layout.html.php';
 } else {
     Redirect::to(404);
 }

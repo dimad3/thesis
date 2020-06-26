@@ -1,5 +1,5 @@
 <?php
-require_once 'init.php';
+require_once __DIR__ . '/../includes/init.php';
 
 if(isset ($_GET['id'])) {
 	/* The `id` of an user must be supplied using a GET variable —
@@ -9,11 +9,11 @@ if(isset ($_GET['id'])) {
 
 	$title = 'User profile';
 
-	include __DIR__ . '/../templates/nav.html.php';
+	include_once __DIR__ . '/../templates/nav.html.php';
 
 	$output = __DIR__ . '/../templates/userprofile.html.php';
 
-	include __DIR__ . '/../templates/layout.html.php';
+	include_once __DIR__ . '/../templates/layout.html.php';
 
 } else {
     Redirect::to(404);

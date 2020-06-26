@@ -1,5 +1,5 @@
 <?php
-require_once 'init.php';
+require_once __DIR__ . '/../includes/init.php';
 
 $user = new User;   // $user parameter is NOT provided (see constructor)
 
@@ -49,7 +49,7 @@ if ($user->isLoggedIn()) {
 
     $title = 'Edit profile';
 
-    include __DIR__ . '/../templates/nav.html.php';
+    include_once __DIR__ . '/../templates/nav.html.php';
 
     // prepare user objects to be used in 'editprofile.html.php'
     if ($user->hasPermissions('moderator') && !empty($_GET)) {
@@ -59,7 +59,7 @@ if ($user->isLoggedIn()) {
 
     $output = __DIR__ . '/../templates/editprofile.html.php';
 
-    include __DIR__ . '/../templates/layout.html.php';
+    include_once __DIR__ . '/../templates/layout.html.php';
 } else {
     Redirect::to(404);
 }

@@ -23,9 +23,7 @@
 
 <body class="text-center">
 	<?php 
-		include $output;
-		// include __DIR__ . '/../public/sandbox.php';
-		// include 'footer.html.php';
+		include_once $output;
 	?>
 
 </body>

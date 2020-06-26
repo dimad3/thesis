@@ -1,6 +1,8 @@
 <?php
-require_once 'init.php';
+require_once __DIR__ . '/../includes/init.php';
+
 $user = new User;
+
 if ($user->isLoggedIn() && $user->hasPermissions('moderator')) {
     
     Database::getInstance()->delete('users', ['id', '=', $_GET['id']]);

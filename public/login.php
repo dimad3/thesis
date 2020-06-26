@@ -1,5 +1,5 @@
 <?php
-require_once 'init.php';
+require_once __DIR__ . '/../includes/init.php';
 
 // L#8
 // Input::isSubmited() - check whether the form was submited (see forum)
@@ -43,4 +43,4 @@ $title = 'Log in';
 
 $output = __DIR__ . '/../templates/login.html.php';
 
-include __DIR__ . '/../templates/layout.html.php';
+include_once __DIR__ . '/../templates/layout.html.php';
