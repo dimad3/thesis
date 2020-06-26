@@ -42,9 +42,10 @@ public function __construct($user = null)
 
 // add new user to db
 // Parameters: array    Required. Array of table's fields
-public function create($fields = []) 
+public function add($fields = []) 
 {
     $this->db->insert('users', $fields);
+    return true;
 }
 
 

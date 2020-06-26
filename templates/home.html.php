@@ -5,11 +5,13 @@
         <h1 class="display-4">Привет, мир!</h1>
         <p class="lead">Это дипломный проект по разработке на PHP. На этой странице список наших пользователей.</p>
         
-        <?php if (!$user->isLoggedIn()): ?>
+        <?php if (array_key_exists('register_ok', $_SESSION)): ?>
+            <div class="alert alert-success"><?php echo Session::flash('register_ok'); ?></div>
+        <?php elseif (!$user->isLoggedIn()): ?>
           <hr class="my-4">
           <p>Чтобы стать частью нашего проекта вы можете пройти регистрацию.</p>
           <a class="btn btn-primary btn-lg" href="register.php" role="button">Зарегистрироваться</a>
-        <?php endif; ?>
+    <?php endif; ?>
       </div>
     </div>
   </div>
