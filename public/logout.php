@@ -2,6 +2,11 @@
 require_once 'init.php';
 
 $user = new User;
-$user->logout();
 
-Redirect::to('index.php');
+if ($user->isLoggedIn()) {
+    $user->logout();
+
+    Redirect::to('index.php');
+} else {
+    Redirect::to(404);
+}

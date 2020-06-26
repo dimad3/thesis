@@ -45,7 +45,6 @@ public function __construct($user = null)
 public function add($fields = []) 
 {
     $this->db->insert('users', $fields);
-    return true;
 }
 
 

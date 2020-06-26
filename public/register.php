@@ -1,6 +1,10 @@
 <?php
 require_once 'init.php';
 
+$user = new User;
+
+if (!$user->isLoggedIn()) {
+
 // L#8
 // Input::isSubmited() - check whether the form was submited (see forum)
 // Returns TRUE if it was and FALSE if it was NOT
@@ -92,3 +96,6 @@ $title = 'User Register';
 $output = __DIR__ . '/../templates/register.html.php';
 
 include __DIR__ . '/../templates/layout.html.php';
+} else {
+    Redirect::to(404);
+}
