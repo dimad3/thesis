@@ -42,14 +42,14 @@ class Input
 // Parameters:
 // string   Required. the name of the form's field = the key of the one element in the $_POST or $_GET array
 // Returns the VALUE of the provided field (as string)
-public static function get($fieldName) // getFieldVal is better
+public static function getFieldVal($fieldName)
 {
-    // check whether the form was submited using the `POST method`
+    // check whether the `$_POST array` contains `$fieldName key`
     if(isset($_POST[$fieldName])) {
-        /* if it was - returns the cooresponding value of `$fieldName key` 
-        in the `$_POST array` (as string)
-        */
+        // if it was - returns the cooresponding value of `$fieldName key` in the `$_POST array` (as string)
         return $_POST[$fieldName];
+    
+        // check whether the `$_GET array` contains `$fieldName key`
     } else if(isset($_GET[$fieldName])) {
         return $_GET[$fieldName];
     }

@@ -26,22 +26,22 @@
 	
 	<div class="form-group">
 		<input type="email" class="form-control" id="email" placeholder="Email"
-		name="email" value='<?php echo Input::get('email')?>'>
+		name="email" value='<?php echo Input::getFieldVal('email')?>'>
 	</div>
 
 	<div class="form-group">
 		<input type="text" class="form-control" id="email" placeholder="Ваше имя"
-		name='username' value='<?php echo Input::get('username') ?>'>
+		name='username' value='<?php echo Input::getFieldVal('username') ?>'>
 	</div>
 
 	<div class="form-group">
 		<input type="password" class="form-control" id="password" placeholder="Пароль" 
-		name='password' value='<?php echo Input::get('password') ?>'>
+		name='password' value='<?php echo Input::getFieldVal('password') ?>'>
 	</div>
 	
 	<div class="form-group">
 		<input type="password" class="form-control" id="password" placeholder="Повторите пароль" 
-		name='password_again' value='<?php echo Input::get('password_again') ?>'>
+		name='password_again' value='<?php echo Input::getFieldVal('password_again') ?>'>
 	</div>
 
 	<div class="checkbox mb-3">

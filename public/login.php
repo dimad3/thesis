@@ -10,7 +10,7 @@ if (!$user->isLoggedIn()) {
     $form_submited = Input::isSubmited();
     if ($form_submited == true) { // true or false
         // check
-        if(Token::check(Input::get('token'))) {
+        if(Token::check(Input::getFieldVal('token'))) {
 
             $validation = new Validation();
 
@@ -28,13 +28,15 @@ if (!$user->isLoggedIn()) {
                 $user = new User; // without parameter
                 
                 // check whether `remember checkbox` is set
-                $remember = (Input::get('remember')) === 'on' ? true : false; // returns BOOLEAN
+                $remember = (Input::getFieldVal('remember')) === 'on' ? true : false; // returns BOOLEAN
 
                 // call `login method` on `User Object`
-                $loggedIn = $user->login(Input::get('email'), Input::get('password'), $remember); // returns boolean
+                $loggedIn = $user->login(Input::getFieldVal('email'), Input::getFieldVal('password'), $remember); // returns boolean
 
                 if($loggedIn) {    // = if(isset($login)) {
                     Redirect::to('index.php');
+                } else {
+                    Session::flash('login_failed', 'Логин или пароль неверны');
                 }
             }
         }

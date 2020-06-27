@@ -95,7 +95,7 @@ public function check(array $form_inputs, array $fields_to_check = [])
                         $user_hash = $recordset->password;    // returns string - user's hash from db
 
                         // set `$password variable` assigning form's field's value 
-                        $password = Input::get('password');
+                        $password = Input::getFieldVal('password');
 
                         // compare db's hash with form's field's value
                         if(!password_verify($password, $user_hash)) {

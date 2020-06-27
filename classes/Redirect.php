@@ -4,7 +4,7 @@ class Redirect
 {
 // Redirect to another page and display the contents of that page.
 // Parameters: string   Required. The URL you wish the users to be redirected too
-// Returvs - No value is returned.
+// Returns - No value is returned.
 public static function to($location = null)
 {
     // check whether `$location variable` is set, which means that it is declared and is not NULL
@@ -30,17 +30,13 @@ public static function to($location = null)
                     // https://stackoverflow.com/questions/16254291/php-404-not-found-header
                     header('HTTP/1.0 404 Not Found.'); // is only giving notice that user is on 404 error page
                     
-                    // if you want to display some 404 notice for user you can do this 
-                    // by loading your 404.html file
+                    // if you want to display some 404 notice for user you can do this by loading your 404.html file
                     include_once __DIR__ . '/../includes/errors/404.php';
                     
                     /* exit function is there because you have to prevent execution of 
                     another php code, which may be directly after it or which 
                     may be excecuted later, simply it says END */
                     exit;
-                // Use break to prevent the code from running into the next case automatically
-                // break ends execution of the current for, foreach, while, do-while or switch structure.
-                break;
             }
         }
         // Redirect to another page with URL provided in `$location variable`

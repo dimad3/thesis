@@ -5,7 +5,7 @@
         <h1 class="display-4">Привет, мир!</h1>
         <p class="lead">Это дипломный проект по разработке на PHP. На этой странице список наших пользователей.</p>
         
-        <?php if (array_key_exists('register_ok', $_SESSION)): ?>
+        <?php if (isset($_SESSION['register_ok'])): ?>
             <div class="alert alert-success"><?php echo Session::flash('register_ok'); ?></div>
         <?php elseif (!$user->isLoggedIn()): ?>
           <hr class="my-4">

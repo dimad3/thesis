@@ -14,17 +14,14 @@
           <?php endforeach; ?>
         </ul>
       </div>
-    <?php else: ?>
-      <?php if (!$user->isLoggedIn()): ?>
-        <div class="alert alert-danger">
-          Логин или пароль неверны
-        </div>
-      <?php endif; ?>
     <?php endif; ?>
+    <div class="alert alert-danger">
+      <?php echo Session::flash('login_failed'); ?>
+    </div>
   <?php endif; ?>
   
   <div class="form-group">
-    <input type="email" class="form-control" name="email" value="<?php echo Input::get('email')?>"
+    <input type="email" class="form-control" name="email" value="<?php echo Input::getFieldVal('email')?>"
     id="email" placeholder="Email">
   </div>
   

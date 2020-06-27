@@ -11,12 +11,12 @@ if (!$user->isLoggedIn()) {
 $form_submited = Input::isSubmited();
 if ($form_submited == true) { // true or false
 	
-	$rulesaccepted = (Input::get('rulesaccepted')) === 'on' ? true : false; // returns BOOLEAN
+	$rulesaccepted = (Input::getFieldVal('rulesaccepted')) === 'on' ? true : false; // returns BOOLEAN
 	if ($rulesaccepted == true) { // true or false
 
 		// L#9 05:10 - get a VALUE of a form's field after the form was submited
 		// 'token' - the name of the form's field from which to get the VALUE
-		$fieldValue = Input::get('token');  // true or false
+		$fieldValue = Input::getFieldVal('token');  // true or false
 
 		// check whether `form's token value` exists in the `$_SESSION[] array`
 		$tokenExists = Token::check($fieldValue); // true or false
@@ -63,8 +63,8 @@ if ($form_submited == true) { // true or false
 			// insert datta in db
 			$user = $user->add([
 				// set fields and its values to be inserted in db
-				'username' => Input::get('username'),
-				'email' =>    Input::get('email'),
+				'username' => Input::getFieldVal('username'),
+				'email' =>    Input::getFieldVal('email'),
 				/*
 				password    Required. The user's password (string)
 				algo        Required. A password algorithm constant denoting the algorithm 
@@ -73,7 +73,7 @@ if ($form_submited == true) { // true or false
 							See the password algorithm constants for documentation on 
 							the supported options for each algorithm. 
 				Returns the hashed password (as string), or FALSE on failure */
-				'password' => password_hash(Input::get('password'), PASSWORD_DEFAULT)
+				'password' => password_hash(Input::getFieldVal('password'), PASSWORD_DEFAULT)
 			]);
 			
 			// unset($_POST); // delete $_POST from Superglobals

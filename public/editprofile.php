@@ -20,7 +20,7 @@ if ($user->isLoggedIn()) {
         ]); // returns `Validate object`
 
         // check whether `form's token value` exists in the `$_SESSION[] array`
-        if(Token::check(Input::get('token'))) {
+        if(Token::check(Input::getFieldVal('token'))) {
 
             // check whether `$passed property` of `Validate object` is TRUE
             if($validation->passed()) {
@@ -28,16 +28,16 @@ if ($user->isLoggedIn()) {
                 if ($user->hasPermissions('moderator') && !empty($_GET)) {
                     // update data in db's table for user profile (2nd argument is provided)
                     $user->update(
-                        ['username' => Input::get('username'),
-                        'note'     => Input::get('status')
+                        ['username' => Input::getFieldVal('username'),
+                        'note'     => Input::getFieldVal('status')
                         ],
                         $_GET['id']
                     );
                 } else {
                     // update data in db's table for admin profile (2nd argument is NOT provided)
                     $user->update([
-                        'username'  => Input::get('username'),
-                        'note'      => Input::get('status')
+                        'username'  => Input::getFieldVal('username'),
+                        'note'      => Input::getFieldVal('status')
                     ]);
                 }
                 Session::flash('success', 'Профиль обновлен');

@@ -32,7 +32,7 @@ if ($user->isLoggedIn()) {
         ]);
 
         // check whether `form's token value` exists in the `$_SESSION[] array`
-        if(Token::check(Input::get('token'))) {
+        if(Token::check(Input::getFieldVal('token'))) {
         
             // check whether `$passed property` of `Validate object` is TRUE
             if($validation->passed()) {
@@ -44,7 +44,7 @@ if ($user->isLoggedIn()) {
                                 See the password algorithm constants for documentation on 
                                 the supported options for each algorithm. 
                     Returns the hashed password (as string), or FALSE on failure */
-                    $new_hash = password_hash(Input::get('new_password'), PASSWORD_DEFAULT);
+                    $new_hash = password_hash(Input::getFieldVal('new_password'), PASSWORD_DEFAULT);
                     
                     // update hash in db's table
                     $user->update(['password' => $new_hash]);
