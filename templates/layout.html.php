@@ -22,9 +22,7 @@
 </head>
 
 <body class="text-center">
-	<?php 
-		include_once $output;
-	?>
+	<?php include_once $output;	?>
 
 </body>
 </html>

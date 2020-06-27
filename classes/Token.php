@@ -3,7 +3,7 @@
 class Token
 {
 
-//L9 4:15 - create new token string and add it as new element in $_SESSION[] array
+//L9 4:15 - create new token string and add it as new element in the $_SESSION[] array
 public static function generate() 
 {
     // set the `$tokenKey variable` by calling `get method` on `Config object`
@@ -26,7 +26,7 @@ public static function generate()
     https://www.w3schools.com/php/func_string_md5.asp */
     $token = md5($random_string);
 
-    // call `put method` on `Session object`
+    // add new element in the $_SESSION[] array
     return Session::put($tokenKey, $token);
 }
 

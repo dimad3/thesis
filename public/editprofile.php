@@ -13,7 +13,7 @@ if ($user->isLoggedIn()) {
 
         $validation = new Validation();
 
-        // check whether new values correspond with validation's rules
+        // check whether values correspond with validation's rules
         $validation = $validation->check($_POST, [
             'username'  =>  ['required'=>true, 'min'=>2, 'max'=>12],
             'status'      =>  ['required'=>true, 'max'=>255]
@@ -44,8 +44,6 @@ if ($user->isLoggedIn()) {
             }
         }
     }
-
-    // $custom_css = 'style1.css';
 
     $title = 'Edit profile';
 

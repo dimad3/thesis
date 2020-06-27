@@ -24,7 +24,8 @@ if ($form_submited == true) { // true or false
 		if ($tokenExists == true) { // L#9 
 	
 			$validation = new Validation();
-
+		
+			// check whether values correspond with validation's rules
 			$validation = $validation->check($_POST,
 				[
 					'username' => [                 // field name

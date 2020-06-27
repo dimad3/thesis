@@ -8,13 +8,13 @@ if (!$user->isLoggedIn()) {
     // Input::isSubmited() - check whether the form was submited (see forum)
     // Returns TRUE if it was and FALSE if it was NOT
     $form_submited = Input::isSubmited();
-    if ($form_submited == true) { // true or false
+    if ($form_submited == true) {
         // check
         if(Token::check(Input::getFieldVal('token'))) {
 
             $validation = new Validation();
 
-            // check fields values to meet required parameters
+            // check whether values correspond with validation's rules
             $validation = $validation->check($_POST, [
                 'email' => [
                     'required'=>true,

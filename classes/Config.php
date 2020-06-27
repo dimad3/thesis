@@ -15,7 +15,7 @@ public static function get($path = null) {
         The index holds the name of the variable.
         
         It is possible to add our own elements in the `$GLOBALS array` */
-        $last_item_val = $GLOBALS['config'];   // returns array
+        $config = $GLOBALS['config'];   // returns array
 
         /* The explode() in-build function breaks a string into an array.
         Note: The "separator" parameter cannot be an `EMPTY string`
@@ -43,15 +43,15 @@ public static function get($path = null) {
             2) If you want to know whether a particular key is defined AND has any value other than NULL
             use isset($array[$key]). isset() returns TRUE if the element with provided key exists 
             in an array AND its VALUE is NOT NULL */
-            $variable_exists = isset($last_item_val[$key]);
+            $variable_exists = isset($config[$key]);
             
-            if($last_item_val == true) {
+            if($variable_exists == true) {
                 /* if the element with provided KEY exists 
                 then assign the corresponding VALUE to the $config variable */
-                $last_item_val = $last_item_val[$key];
+                $config = $config[$key];
             }
         }
-        return $last_item_val;
+        return $config;
     }
 
     return false;

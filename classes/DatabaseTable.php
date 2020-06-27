@@ -2,7 +2,8 @@
 
 class DatabaseTable {
 
-private $pdo /*PDO class*/, $query /*PDOStatement*/, $error = false, $results /*array*/, $count /*integer*/;
+private $pdo /*PDO class*/, $query /*PDOStatement*/, $error = false /*boolean*/, 
+        $results /*array*/, $count /*integer*/;
 
 // L#3 - General singleton class - https://phpenthusiast.com/blog/the-singleton-design-pattern-in-php
 // https://stackoverflow.com/questions/12553142/when-we-should-make-the-constructor-private-why-php/12553289
@@ -67,7 +68,7 @@ private function query(string $sql, array $params = [])
             that was used to prepare the statement 
             1) `$i` - parameter identifier - For a prepared statement using question mark placeholders, 
             this will be the 1-indexed position of the parameter.
-            2) The value to bind to the parameter */
+            2) `$param` - the value to bind to the parameter */
             $this->query->bindValue($i, $param);
             $i++; // increase parameter identifier by 1
         }
@@ -99,7 +100,7 @@ private function query(string $sql, array $params = [])
 }
 
 
-// Returns the `$error property` of `Database object`
+// Returns the `$error property` of `Database object` as boolean
 // we can't access PRIVATE property `$error` from external page to access it use PUBLIC `error method`
 public function error()
 {
@@ -144,7 +145,7 @@ public function findAll(string $table)
 
 
 // searches the db for records that have a value set for a specified column.
-// `$where array` contains 3 elements: 1) criteria's field name 2) operator 3) criteria's value
+// `$where array` - contains 3 elements: 1) criteria's field name 2) operator 3) criteria's value
 // Returns a `Database object` or FALSE if the `Database object` has an error
 public function findByCriteria(string $table, array $where = [])
 {
@@ -161,7 +162,7 @@ public function delete(string $table, array $where = [])
 }
 
 
-// Returns Object of Database class
+// Returns Object of Database class or FALSE on failure
 private function action(string $action, string $table, array $where = [])
 // `$where array` contains 3 elements: 1) criteria's field name 2) operator 3) criteria's value
 {
@@ -183,8 +184,7 @@ private function action(string $action, string $table, array $where = [])
         $value = $where[2];     // criteria's value
 
         /* Check whether the value of the `$operator variable` is in the `$operators array`.
-        If the `$operators array` DOES contain the operator from the `$where array
-        then execute the query. If it does NOT return FALSE
+        If the `$operators array` DOES contain the operator from the `$where array` then execute the query.
         The `in_array() function` searches an array for a specific value.
         Parameter Values:
         1) search	Required. Specifies the what to search for
@@ -223,7 +223,6 @@ public function insert($table, $fields = [])
         $values .= "?,";
     }
     $val = rtrim($values, ',');
-    // var_dump($val);die;
 
     /* `array_keys()` in-build function - returns an array containing the keys (numeric and string) of an array.
     Parameters:
@@ -233,7 +232,6 @@ public function insert($table, $fields = [])
                 true - Returns the keys with the specified value, depending on type: the number 5 is not the same as the string "5".
                 false - Default value. Not depending on type, the number 5 is the same as the string "5" */
     $sql1 = array_keys($fields);
-    // var_dump($sql1);die;
 
     /* `implode()` in-build function - Join array elements with a glue string.
     Parameters:
@@ -245,7 +243,6 @@ public function insert($table, $fields = [])
     // var_dump($sql2);die;
     
     $sql = "INSERT INTO {$table} (`{$sql2}`) VALUES ({$val})";
-    // var_dump($sql);die;
 
     // run the `query method` and after that the `error method` to check whether an error has accured
     // if an error has accured the `$error property` of Database object will be `TRUE`
@@ -276,13 +273,12 @@ public function update($table, $id, $fields = [])
     and the internal array pointer is advanced by one (so on the next iteration, you'll be looking at the next element).
     */
     foreach($fields as $key => $value) {
-        $set .= "`{$key}` = ?,"; // username = ?, password = ?,
+        $set .= "`{$key}` = ?,";
     }
 
-    $set = rtrim($set, ','); // username = ?, password = ?
+    $set = rtrim($set, ',');
 
     $sql = "UPDATE `{$table}` SET {$set} WHERE `id` = {$id}";
-    //var_dump($sql);die;
 
     if(!$this->query($sql, $fields)->error()){
         return true;

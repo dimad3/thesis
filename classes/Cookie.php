@@ -17,7 +17,7 @@ public static function exists($keyName) {
 
 /* L#17 - find element in the $_COOKIE[] global array
 Parametrs: string Required - key name to be found in the $_COOKIE[] global array
-Returns elements VALUE (as string) */
+Returns elements VALUE */
 public static function get($keyName) {
     return $_COOKIE[$keyName];
 }
@@ -29,7 +29,7 @@ Note:
 This is a 'superglobal', or automatic global, variable. This simply means that it is available 
 in all scopes throughout a script.
 Parametrs:
-1) $hashKey string - new element's KEY name
+1) $keyName string - new element's KEY name
 2) $value - new element's VALUE for corresponding new key
 3) $expiry - Specifies when the cookie expires
 Returns BOOLEAN
@@ -58,13 +58,14 @@ public static function put($keyName, $value, $expiry) {
         // if cookie is set
         return true;
     }
-    // if cookie NOT set
+    // if cookie is NOT set
     return false;
 }
 
 
 /* L#17 - REMOVE cookie file from user's browser + REMOVE element from the $_COOKIE[] global array
-Parametrs: string Required - key name to be deleted from the $_COOKIE[] global array */
+Parametrs: string Required - key name to be deleted from the $_COOKIE[] global array 
+Returns nothing */
 public static function delete($keyName) {
     // it is not possible to delete file from user's browser, so we just put new cookie file wit expiry in the past
     self::put($keyName, '', time() - 1);

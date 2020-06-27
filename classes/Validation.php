@@ -6,9 +6,8 @@ class Validation
 private $passed = false, $errors = [], $db = null;
 
 public function __construct() {
-    // call `getInstance method` on `Database object`
-    $this->db = DatabaseTable::getInstance();
     // set `$db property` of `Validate object` as new instance of `Database object`
+    $this->db = DatabaseTable::getInstance();
 }
 
 

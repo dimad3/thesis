@@ -23,7 +23,8 @@ public static function exists($keyName) {
 
 
 /* L#9 4:00 - REMOVE element from $_SESSION[] array
-Parametrs: string Required - key name to be deleted from the $_SESSION[] array */
+Parametrs: string Required - key name to be deleted from the $_SESSION[] array 
+Returns: nothing */
 public static function delete($keyName) 
 {
     if(self::exists($keyName)) {
@@ -42,14 +43,14 @@ public static function get($keyName)
 
 
 /* L#10 - returns flash message as string 
-or set new element ('flashName' => 'flash message') in the $_SESSION[] array
+or set new element ('keyName' => 'flash message') in the $_SESSION[] array
 Parameters:
-1) $keyName string  Required. new element's KEY name (flash name (id))
+1) $keyName string  Required. new element's KEY name
 2) $value string    Optional. new element's VALUE (flash message)
 */
 public static function flash($keyName, $value = '') 
 {
-    // get msg from the $_SESSION[] array (call from test.php)
+    // get msg from the $_SESSION[] array
     // check whether element with provided `$keyName` exists in the $_SESSION[] array
     // AND whether this element's VALUE NOT equal to empty string
     if(self::exists($keyName) && self::get($keyName) !== '') {
@@ -61,8 +62,9 @@ public static function flash($keyName, $value = '')
 
         return $flash; // flash message as string
     
-        // set new element in the $_SESSION[] array (call from test.php)
+    // if element with provided `$keyName` does NOT exist in the $_SESSION[] array
     } else {
+        // add new element in the $_SESSION[] array
         self::put($keyName, $value);
     }
 }
