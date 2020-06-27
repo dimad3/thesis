@@ -23,7 +23,7 @@ if ($form_submited == true) { // true or false
 		
 		if ($tokenExists == true) { // L#9 
 	
-			$validation = new Validate();
+			$validation = new Validation();
 
 			$validation = $validation->check($_POST,
 				[
@@ -88,9 +88,10 @@ if ($form_submited == true) { // true or false
 	}
 }
 
-$custom_css = 'style1.css';  // ok
+$custom_css = 'style.css';  // ok
+// $custom_css = __DIR__ . '/../css/style.css'; // BUG ???
 // $css = 'css/style.css'; // ok
-// $css = __DIR__ . '/../css/style.css';  // BUG ???
+
 $title = 'User Register';
 
 $output = __DIR__ . '/../templates/register.html.php';

@@ -5,8 +5,8 @@ $user = new User; // WITHOUT parameter (see constructor)!
 
 if ($user->isLoggedIn() && $user->hasPermissions('moderator')) {
 
-    $users = Database::getInstance()->findAll('users')->results(); // returns array of stdClass Objects
-    $groups  = Database::getInstance()->findAll('groups'); // returns Database Object
+    $users = DatabaseTable::getInstance()->findAll('users')->results(); // returns array of stdClass Objects
+    $groups  = DatabaseTable::getInstance()->findAll('groups'); // returns Database Object
 
     foreach ($users as $user1) {
         // find the corresponding group by `groupid` from `users table`

@@ -11,7 +11,7 @@ if ($user->isLoggedIn()) {
     if ($form_submited == true) { // true or false
     // if form was submited, then:
 
-        $validation = new Validate();
+        $validation = new Validation();
 
         // check whether new values correspond with validation's rules
         $validation = $validation->check($_POST, [

@@ -5,7 +5,7 @@ $user = new User;
 
 if ($user->isLoggedIn() && $user->hasPermissions('moderator')) {
     
-    Database::getInstance()->delete('users', ['id', '=', $_GET['id']]);
+    DatabaseTable::getInstance()->delete('users', ['id', '=', $_GET['id']]);
 
     Redirect::to('manageusers.php');
 } else {

@@ -2,10 +2,10 @@
 session_start(); // L#9 9:08 - creates a session or resumes the current one
 // Create an associative array $_SESSION[] containing session variables available to the current script
 
-require_once __DIR__ . '/../classes/Database.php';
+require_once __DIR__ . '/../classes/DatabaseTable.php';
 require_once __DIR__ . '/../classes/Config.php';
 require_once __DIR__ . '/../classes/Input.php';
-require_once __DIR__ . '/../classes/Validate.php';
+require_once __DIR__ . '/../classes/Validation.php';
 require_once __DIR__ . '/../classes/Token.php';
 require_once __DIR__ . '/../classes/Session.php';
 require_once __DIR__ . '/../classes/User.php';
@@ -61,7 +61,7 @@ if(Cookie::exists($hashKey) && !Session::exists($userKey)) {
     $browser_cookie = Cookie::get($hashKey); // returns string
     
     // find `user's hash` in the 'user_sessions' table where $browser_hash is criteria
-    $db_cookie = Database::getInstance()->findByCriteria('user_sessions', ['hash', '=', $browser_cookie]);
+    $db_cookie = DatabaseTable::getInstance()->findByCriteria('user_sessions', ['hash', '=', $browser_cookie]);
     // Returns Database Object - record from the 'user_sessions' table
 
     // checks whether `$browser_cookie value` exists in the 'user_sessions' table (count > 0)

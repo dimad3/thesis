@@ -22,8 +22,8 @@
       
       <form class="form" action="" method="post">
         <div class="form-group">
-          <label for="current_password">Текущий пароль</label>
-          <input type="password" class="form-control" name="current_password" id="current_password">
+          <label for="password">Текущий пароль</label>
+          <input type="password" class="form-control" name="password" id="password">
         </div>
 
         <div class="form-group">

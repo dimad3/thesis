@@ -1,6 +1,6 @@
 <?php
 
-class Database {
+class DatabaseTable {
 
 private $pdo /*PDO class*/, $query /*PDOStatement*/, $error = false, $results /*array*/, $count /*integer*/;
 
@@ -31,7 +31,7 @@ public static function getInstance()
 {
     // if $instance do not exist, create it
     if(!isset(self::$instance)) {
-        self::$instance = new Database;
+        self::$instance = new DatabaseTable;
     }
     return self::$instance;
 }
@@ -295,7 +295,10 @@ public function update($table, $id, $fields = [])
 // returns stdClass Object - the first record from a recordset
 public function first()
 {
-    return $this->results()[0];
+    if (!$this->count() == 0) {
+        return $this->results()[0];
+    }
+    return false;
 }
 
 }

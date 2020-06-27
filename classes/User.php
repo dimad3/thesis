@@ -7,7 +7,7 @@ private $db, $data /*stdClass Object*/, $userKey /*string*/, $hashKey /*string*/
 
 public function __construct($user = null) 
 {
-    $this->db = Database::getInstance();
+    $this->db = DatabaseTable::getInstance();
 
     // set `$userKey property` of the `User Object`
     $this->userKey = Config::get('session.userKey');

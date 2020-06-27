@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../includes/init.php';
 
-$records = Database::getInstance()->findAll('users')->results(); // returns array
+$records = DatabaseTable::getInstance()->findAll('users')->results(); // returns array
 
 $title = 'Home';
 

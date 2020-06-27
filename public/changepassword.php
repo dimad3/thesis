@@ -12,9 +12,9 @@ if ($user->isLoggedIn()) {
     // if form was submited, then:
             
         // check whether new values correspond with validation's rules
-        $validation = new Validate();
+        $validation = new Validation();
         $validation = $validation->check($_POST, [
-            'current_password'      =>  [
+            'password'      =>  [
                 'required'  =>  true,
                 'wrong_pass'=>  'users'     // the name of the table where to check the password
             ],

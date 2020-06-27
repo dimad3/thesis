@@ -1,13 +1,13 @@
 <?php
 
-class Validate
+class Validation
 {
 
 private $passed = false, $errors = [], $db = null;
 
 public function __construct() {
     // call `getInstance method` on `Database object`
-    $this->db = Database::getInstance();
+    $this->db = DatabaseTable::getInstance();
     // set `$db property` of `Validate object` as new instance of `Database object`
 }
 
@@ -95,7 +95,7 @@ public function check(array $form_inputs, array $fields_to_check = [])
                         $user_hash = $recordset->password;    // returns string - user's hash from db
 
                         // set `$password variable` assigning form's field's value 
-                        $password = Input::get('current_password');
+                        $password = Input::get('password');
 
                         // compare db's hash with form's field's value
                         if(!password_verify($password, $user_hash)) {

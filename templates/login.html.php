@@ -5,7 +5,7 @@
 
   <?php if ($form_submited == true): ?>
     <?php if (!$validation->passed()): ?>
-      <div class="alert alert-infodanger">
+      <div class="alert alert-danger">
         <ul>
           <?php foreach ($validation->errors() as $error): ?>
             <li>
@@ -14,13 +14,12 @@
           <?php endforeach; ?>
         </ul>
       </div>
-    
-    <?php endif; ?>
-    
-    <?php if (!$loggedIn): ?>
-      <div class="alert alert-info">
-        Логин или пароль неверны
-      </div>
+    <?php else: ?>
+      <?php if (!$user->isLoggedIn()): ?>
+        <div class="alert alert-danger">
+          Логин или пароль неверны
+        </div>
+      <?php endif; ?>
     <?php endif; ?>
   <?php endif; ?>
   
